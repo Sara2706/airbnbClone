@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- fontawsome link here -->
+    <script src="https://kit.fontawesome.com/527251fb76.js" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>Contact us</title>
+
+    <link rel="stylesheet" href="../style/style.css">
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="wrapper mx-5">
+            <!-- navbar -->
+            <nav class="navbar bg-white">
+                <div class="wrapperdiv mt-1">
+                    <!-- logo -->
+                    <div class="logo">
+                        <a class="navbar-brand" href="/"><img src="../assets/airbnbLogo.png" alt="Logo"></a>
+                    </div>
+
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="/host" class="btn btn-outline-light text-dark mx-1 "><strong>Become a host</strong></a>
+                        <button class="btn btn-outline-light text-dark mx-1"><strong><i
+                                    class="fa-solid fa-globe"></i></strong></button>
+                        <button class="btn btn-outline-dark rounded-pill mx-1 logbtn"><strong><span class="mx-2"><i
+                                        class="fa-solid fa-bars"></i></span><span><i
+                                        class="fa-solid fa-user"></i></span></strong>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+        <hr>
+        <!-- dropdown here -->
+        <div class="log position-absolute rounded d-flex flex-column bg-white shadow p-2 d-none" style="width: 250px;">
+            <div class="linkHost">
+
+            </div>
+            <hr>
+            <a href="/mybookings" class="text-decoration-none text-black">My bookings</a>
+            <a href="/contact" class="text-decoration-none text-black">Contact us</a>
+            <a href="/host" class="text-decoration-none text-black">Host your home</a>
+            <a href="/host" class="text-decoration-none text-black">Host your experience</a>
+            <a href="#" class="text-decoration-none text-black">Help</a>
+        </div>
+        <div class="wrapperdata mx-5 d-flex justify-content-center my-5">
+            <form class="row g-3 col-lg-6 border alert mt-5" method="Post" action="http://localhost:4000/contactquerydata">
+                <div class="col-md-12">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="Name" placeholder="Email" required>
+                </div>
+                <div class="row col-md-12">
+                    <div class="col-md-6">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="text" class="form-control" id="email" name="Email" placeholder="Email" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="phone" class="form-label">Mobile no</label>
+                        <input type="text" class="form-control" id="phone" name="Phone" placeholder="Email" required>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <label for="query" class="form-label">Query</label>
+                    <input type="text" class="form-control" id="query" name="Query" placeholder="password" required>
+                </div>
+
+                <div class="col-md-12">
+                    <button class="btn btn-primary col-md-12" type="submit">Submit form</button>
+                </div>
+            </form>
+        </div>
+        <!-- footer -->
+        <footer class="bg-light pt-1 position-fixed d-flex justify-content-center align-items-center">
+            <p class="mt-1">Developed my Saravanan</p>
+        </footer>
+    </div>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="../script/script.js"></script>
+    <script>
+
+
+    </script>
+
+</body>
+
+</html>

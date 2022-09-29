@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add property</title>
+
+    <!-- fontawsome link here -->
+    <script src="https://kit.fontawesome.com/527251fb76.js" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../style/style.css">
+</head>
+
+<body>
+    <div class="container-fluid position-relative">
+        <!-- wrapper -->
+        <div class="wrapper mx-5">
+            <!-- nav -->
+            <nav class="navbar bg-white">
+                <div class="wrapperdiv mt-1">
+                    <!-- logo -->
+                    <div class="logo">
+                        <a class="navbar-brand" href="#"><img src="../assets/airbnbLogo.png" alt="Logo"></a>
+                    </div>
+
+                    <!-- user btn -->
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <button class="btn btn-outline-dark rounded-pill mx-1 logbtn"><strong><span class="mx-2"><i
+                                            class="fa-solid fa-bars"></i></span><span><i
+                                            class="fa-solid fa-user"></i></span></strong>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+        <hr>
+        <!-- dropdown -->
+        <div class="log position-absolute rounded d-flex flex-column bg-white shadow p-2 d-none" style="width: 250px;">
+            <div class="linkHost">
+
+            </div>
+            <hr>
+            <a href="/host/addproperty" class="text-decoration-none text-black">Add property</a>
+            <a href="/host" class="text-decoration-none text-black">My property</a>
+            <a href="#" class="text-decoration-none text-black">Help</a>
+        </div>
+        <div class="wrapper mx-5">
+            <!-- form -->
+            <form class="row mb-5" method="Post" action="http://localhost:4000/host/addpropertydata"
+                enctype="multipart/form-data">
+                <h1 class="h1 text-primary">Add a property</h1>
+                <!-- property name -->
+                <div class="col-md-4">
+                    <label for="validationCustom01" class="form-label">Property name</label>
+                    <input type="text" class="form-control" id="validationCustom01" name="Propertyname"
+                        placeholder="Propertyname" required>
+                </div>
+                <!-- owner name -->
+                <div class="col-md-4">
+                    <label for="validationCustom02" class="form-label">Owner name</label>
+                    <input type="text" class="form-control" id="validationCustom02" name="Ownername"
+                        placeholder="Owner name" required>
+                </div>
+                <!-- tag name -->
+                <div class="col-md-4">
+                    <label for="validationCustom03" class="form-label">Tag name</label>
+                    <input type="text" class="form-control" id="validationCustom03" name="Tagname"
+                        placeholder="Tag name" required>
+
+                </div>
+                <!-- country -->
+                <div class="col-md-3">
+                    <label for="validationCustom04" class="form-label">Country</label>
+                    <input type="text" class="form-control" id="validationCustom04" name="Country" required>
+                </div>
+                <!-- state -->
+                <div class="col-md-3">
+                    <label for="validationCustom05" class="form-label">State</label>
+                    <input type="text" class="form-control" id="validationCustom05" name="State" required>
+                </div>
+                <!-- city -->
+                <div class="col-md-3">
+                    <label for="validationCustom06" class="form-label">City</label>
+                    <input type="text" class="form-control" id="validationCustom06" name="City" required>
+                </div>
+                <!-- square feet -->
+                <div class="col-md-3">
+                    <label for="validationCustom07" class="form-label">Square feet</label>
+                    <input type="Number" class="form-control" id="validationCustom07" name="Squarefeet" required>
+                </div>
+                <!-- rating -->
+                <div class="col-md-3">
+                    <label for="validationCustom08" class="form-label">Rating</label>
+                    <input type="text" class="form-control" id="validationCustom08" name="Rating" value="Not yet"
+                        readonly>
+                </div>
+                <!-- pricing -->
+                <div class="col-md-3">
+                    <label for="validationCustom09" class="form-label">Pricing</label>
+                    <input type="number" class="form-control" id="validationCustom09" name="Pricing">
+                </div>
+                <!-- images upload -->
+                <div class="col-md-6">
+                    <label for="validationCustom10" class="form-label">Multiple image for gallery</label>
+                    <input type="file" multiple class="form-control" id="validationCustom10" name="Gallery" required>
+                </div>
+                <!-- no of bedroom -->
+                <div class="col-md-3">
+                    <label for="validationCustom11" class="form-label">No of Bedroom</label>
+                    <input type="Number" class="form-control" id="validationCustom11" name="Noofbedroom" required>
+                </div>
+                <!-- no of bathroom -->
+                <div class="col-md-3">
+                    <label for="validationCustom12" class="form-label">No of Bathroom</label>
+                    <input type="Number" class="form-control" id="validationCustom12" name="Noofbathroom" required>
+                </div>
+                <!-- no of bed -->
+                <div class="col-md-3">
+                    <label for="validationCustom13" class="form-label">No of Bed</label>
+                    <input type="Number" class="form-control" id="validationCustom13" name="Noofbed" required>
+                </div>
+                <!-- people allowed -->
+                <div class="col-md-3">
+                    <label for="validationCustom14" class="form-label">No of people allowed</label>
+                    <input type="Number" class="form-control" id="validationCustom14" name="Noofpeople" required>
+                </div>
+                <!-- description -->
+                <div class="col-md-12">
+                    <label for="validationCustom15" class="form-label">Description</label>
+                    <input type="text" class="form-control" id="validationCustom15" name="Description" required>
+                </div>
+                <!-- amenities -->
+                <div class="col-md-12 my-2 mt-1">
+                    <p class="h6 text-dark">AMENITIES</p>
+                </div>
+                <div class="col-md-2">
+                    <label for="amenities01" class="form-label">Parking</label>
+                    <select class="form-select" id="amenities01" name="Parking" required>
+                        <option>True</option>
+                        <option>False</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label for="amenities02" class="form-label">Ac</label>
+                    <select class="form-select" id="amenities02" name="Ac" required>
+                        <option>True</option>
+                        <option>False</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label for="amenities03" class="form-label">Wifi</label>
+                    <select class="form-select" id="amenities03" name="Wifi" required>
+                        <option>True</option>
+                        <option>False</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label for="amenities04" class="form-label">Breakfast</label>
+                    <select class="form-select" id="amenities04" name="Breakfast" required>
+                        <option>True</option>
+                        <option>False</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label for="amenities05" class="form-label">Tv</label>
+                    <select class="form-select" id="amenities05" name="Tv" required>
+                        <option>True</option>
+                        <option>False</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label for="amenities06" class="form-label">Loundry</label>
+                    <select class="form-select" id="amenities06" name="Loundry" required>
+                        <option>True</option>
+                        <option>False</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="amenities07" class="form-label">Smokealarm</label>
+                    <select class="form-select" id="amenities07" name="Smokealarm" required>
+                        <option>True</option>
+                        <option>False</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="amenities08" class="form-label">Freez</label>
+                    <select class="form-select" id="amenities08" name="Freez" required>
+                        <option>True</option>
+                        <option>False</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="amenities09" class="form-label">Kitchen</label>
+                    <select class="form-select" id="amenities09" name="Kitchen" required>
+                        <option>True</option>
+                        <option>False</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="amenities10" class="form-label">Petsallowed</label>
+                    <select class="form-select" id="amenities10" name="Petsallowed" required>
+                        <option>True</option>
+                        <option>False</option>
+                    </select>
+                </div>
+                <!-- submit btn -->
+                <div class="col-md-12">
+                    <button class="btn btn-primary my-3" type="submit">Submit</button>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+    <!-- footer -->
+    <footer class="bg-light pt-1 position-fixed d-flex justify-content-center align-items-center mt-2">
+        <p class="mt-1">Developed my Saravanan</p>
+    </footer>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="../script/script.js"></script>
+
+</body>
+
+</html>

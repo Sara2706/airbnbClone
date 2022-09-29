@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conformation</title>
+
+    <!-- fontawsome link here -->
+    <script src="https://kit.fontawesome.com/527251fb76.js" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../style/style.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="wrapper mx-5">
+            <!-- navbar -->
+            <nav class="navbar bg-white">
+                <div class="wrapperdiv mt-1">
+                    <!-- logo -->
+                    <div class="logo">
+                        <a class="navbar-brand" href="/"><img src="../assets/airbnbLogo.png" alt="Logo"></a>
+                    </div>
+
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="/host" class="btn btn-outline-light text-dark mx-1 "><strong>Become a host</strong></a>
+                        <button class="btn btn-outline-light text-dark mx-1"><strong><i
+                                    class="fa-solid fa-globe"></i></strong></button>
+                        <button class="btn btn-outline-dark rounded-pill mx-1 logbtn"><strong><span class="mx-2"><i
+                                        class="fa-solid fa-bars"></i></span><span><i
+                                        class="fa-solid fa-user"></i></span></strong>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+        <hr>
+        <!-- dropdown here -->
+        <div class="log position-absolute rounded d-flex flex-column bg-white shadow p-2 d-none" style="width: 250px;">
+            <div class="linkHost">
+
+            </div>
+            <hr>
+            <a href="/mybookings" class="text-decoration-none text-black">My bookings</a>
+            <a href="/contact" class="text-decoration-none text-black">Contact us</a>
+            <a href="/host" class="text-decoration-none text-black">Host your home</a>
+            <a href="/host" class="text-decoration-none text-black">Host your experience</a>
+            <a href="#" class="text-decoration-none text-black">Help</a>
+        </div>
+
+        <!-- wrapper -->
+        <div class="wrapperdata mx-5">
+            <h1 class="heading">Booking conformation</h1>
+            <div class="col-lg-12 col-md-12 border border-dark rounded p-2">
+                <!-- form conformation -->
+                <form class="mt-2" method="Post" action="http://localhost:4000/conformation/success">
+                    <div class="row">
+                        <div class="row">
+                            <!-- guest name -->
+                            <div class="col-lg-6 col-md-12">
+                                <label for="guestName" class="form-label">GuestName</label>
+                                <input type="text" class="form-control" id="guestName" name="GuestName" required>
+                            </div>
+                            <!-- property name -->
+                            <div class="col-lg-6 col-md-12">
+                                <label for="propertyName" class="form-label">propertyName</label>
+                                <input type="text" class="form-control" id="propertyName" name="propertyName" readonly>
+                            </div>
+                        </div>
+                        <!-- no of person -->
+                        <div class="col-lg-4 col-md-12 mt-3">
+                            <label for="nop" class="form-label">No of person</label>
+                            <input type="number" class="form-control" id="nop" name="Nop" readonly>
+                        </div>
+                        <!-- price of per day -->
+                        <div class="col-lg-4 col-md-12 mt-3">
+                            <label for="price" class="form-label">Per day price</label>
+                            <input type="number" class="form-control" id="price" name="Price" readonly>
+                        </div>
+                        <!-- total price -->
+                        <div class="col-lg-4 col-md-12 mt-3">
+                            <label for="totalPrice" class="form-label">Total Price</label>
+                            <input type="number" class="form-control" id="totalPrice" name="Totalprice" readonly>
+                        </div>
+                        <!-- check in -->
+                        <div class="col-lg-4 col-md-12 mt-3">
+                            <label for="checkIn" class="form-label">Check in</label>
+                            <input type="text" class="form-control" id="checkIn" name="Checkin" readonly>
+                        </div>
+                        <!-- check out -->
+                        <div class="col-lg-4 col-md-12 mt-3">
+                            <label for="checkOut" class="form-label">Check out</label>
+                            <input type="text" class="form-control" id="checkOut" name="Checkout" readonly>
+                        </div>
+                        <!-- no of nights -->
+                        <div class="col-lg-4 col-md-12 mt-3">
+                            <label for="non" class="form-label">No of nights</label>
+                            <input type="number" class="form-control" id="non" name="Non" readonly>
+                        </div>
+                        <!-- </div> payment option -->
+                        <div class="col-lg-12 col-md-12 mt-3">
+                            <label for="payment" class="form-label">Payment option</label>
+                            <select class="form-select" id="payment" name="Payment" required>
+                                <option>Pay at property</option>
+                                <option>Online payment</option>
+                            </select>
+                        </div>
+                        <!-- submit button -->
+                        <div class="col-12 my-3">
+                            <button class="btn btn-primary submitBtn" type="submit">Conform</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <!-- footer -->
+            <footer class="bg-light pt-1 position-fixed d-flex justify-content-center align-items-center">
+                <p class="mt-1">Developed my Saravanan</p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="../script/script.js"></script>
+    <script src="../script/propertyconformation.js"></script>
+</body>
+
+</html>

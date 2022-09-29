@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Host</title>
+
+    <!-- fontawsome link here -->
+    <script src="https://kit.fontawesome.com/527251fb76.js" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="./style/style.css">
+</head>
+
+<body>
+    <div class="container-fluid position-relative">
+        <!-- wrapper -->
+        <div class="wrapper mx-5">
+            <!-- nav -->
+            <nav class="navbar bg-white">
+                <div class="wrapperdiv mt-1">
+                    <!-- logo -->
+                    <div class="logo">
+                        <a class="navbar-brand" href="#"><img src="./assets/airbnbLogo.png" alt="Logo"></a>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <button class="btn btn-outline-dark rounded-pill mx-1 logbtn"><strong><span class="mx-2"><i
+                                        class="fa-solid fa-bars"></i></span><span><i
+                                        class="fa-solid fa-user"></i></span></strong>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+        <hr>
+        <!-- dropdown -->
+        <div class="log position-absolute rounded d-flex flex-column bg-white shadow p-2 d-none" style="width: 250px;">
+            <div class="linkHost">
+
+            </div>
+            <hr>
+            <a href="/host/addproperty" class="text-decoration-none text-black">Add property</a>
+            <a href="/host" class="text-decoration-none text-black">My property</a>
+            <a href="#" class="text-decoration-none text-black">Help</a>
+        </div>
+        <!-- wrapper -->
+        <div class="wrapper mx-5">
+            <h1 class="h1">My property</h1>
+            <div class="row" id="wrap">
+
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- footer -->
+    <footer class="bg-light pt-1 position-fixed d-flex justify-content-center align-items-center">
+        <p class="mt-1">Developed my Saravanan</p>
+    </footer>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="../script/script.js"></script>
+    <script src="../script/hostpage.js"></script>
+</body>
+
+</html>
