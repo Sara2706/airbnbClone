@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const path = require('path')
 const { UserData, PropertyData, BookingData, ContactData } = require('../schema/schema.js');
 const cookieParser = require('cookie-parser');
+const session = require('express-session');
 const multer = require('multer');
 const bcrypt = require('bcrypt');
 
@@ -20,21 +21,21 @@ app.use(cookieParser());
 
 // send my booking using api
 app.get('/mybookings', (req, res) => {
-    res.clearCookie('propertyId')
     res.sendFile(path.resolve('./views/mybookings.html'));
 })
 
 // fetch my booking datas
 app.get('/fetchmyboookings', async (req, res) => {
 
-    const sendBook = await BookingData.find({ bookingGuestId: req.cookies.userId });
-
+    const sendBook = await BookingData.find({ bookingGuestId: req.session.userId });
+    console.log(sendBook);
     res.json(sendBook)
 })
 
 // send specific property data
 app.get('/mybookingpropertydata', async (req, res) => {
-    const myBooking = await BookingData.find({ bookingGuestId: req.cookies.userId });
+    const myBooking = await BookingData.find({ bookingGuestId: req.session.userId });
+    console.log(myBooking);
     var propId = [];
     for (let i = 0; i < myBooking.length; i++) {
         propId.push(myBooking[i].propertyId)

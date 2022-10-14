@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const path = require('path')
 const { UserData, PropertyData, BookingData, RatingData, ContactData } = require('../schema/schema.js');
 const cookieParser = require('cookie-parser');
+const session = require('express-session');
 const multer = require('multer');
 const bcrypt = require('bcrypt');
 
@@ -19,8 +20,8 @@ app.use(cookieParser());
 
 // send rating page here
 app.get('/rating', async (req, res) => {
-    if (await req.cookies.userId == undefined) {
-        res.cookie('logInError', 'Need login')
+    if (await req.session.userId == undefined) {
+        req.session.logInError= 'Need login';
         res.redirect('/login')
     } else {
         res.sendFile(path.resolve('./views/ratings.html'));
@@ -45,9 +46,9 @@ app.post('/reviewdata', async (req, res) => {
     // create new rating
     const newRating = new RatingData({
         ratingId: ratingVal,
-        userId: req.cookies.userId,
-        propertyId: req.cookies.bookingPropId,
-        bookingId: req.cookies.bookingId,
+        userId: req.session.userId,
+        propertyId: req.session.bookingPropId,
+        bookingId: req.session.bookingId,
         reviewDate: date,
         reviewHeading: req.body.reviewheading,
         reviewDescription: req.body.review,

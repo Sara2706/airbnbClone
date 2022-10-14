@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const path = require('path')
 const { UserData, PropertyData, BookingData, ContactData } = require('../schema/schema.js');
 const cookieParser = require('cookie-parser');
+const session = require('express-session');
 const multer = require('multer');
 const bcrypt = require('bcrypt');
 
@@ -61,7 +62,7 @@ app.post('/host/addpropertydata', gallery, async (req, res) => {
     // propert connect with schema
     const newProperty = new PropertyData({
         propertyId: propVal,
-        userId: req.cookies.userId,
+        userId: req.session.userId,
         propertyName: req.body.Propertyname,
         ownerofProperty: req.body.Ownername,
         country: req.body.Country,

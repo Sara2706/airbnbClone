@@ -19,13 +19,11 @@ app.use(cookieParser());
 
 // chech host and send file
 app.get('/host', async (req, res) => {
-    res.clearCookie('propertyId');
-    const logUser = await UserData.findOne({ userId: req.cookies.userId });
+    const logUser = await UserData.findOne({ userId: req.session.userId });
     if (logUser.userType == 'Host') {
         res.sendFile(path.resolve('./views/host.html'));
     } else {
-        res.clearCookie('userId')
-        res.cookie('RegisterError', 'Register for host first');
+        req.session.RegisterError= 'Register for host first';
         res.redirect('/register');
     }
 
@@ -36,7 +34,7 @@ app.get('/host', async (req, res) => {
 // send specific property for host 
 
 app.get('/hostproperty', (req, res) => {
-    PropertyData.find({ userId: req.cookies.userId }, (err, docs) => {
+    PropertyData.find({ userId: req.session.userId }, (err, docs) => {
         if (docs) {
             res.json(docs)
         } else {

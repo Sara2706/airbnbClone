@@ -19,17 +19,14 @@ app.use(cookieParser());
 
 // send specific proprety page
 app.get('/hostproperty/:id', async (req, res) => {
-    if (req.cookies.propertyId) {
-        res.clearCookie('propertyId')
-    }
     // save property id in cookies
-    res.cookie('propertyId', req.params.id);
+    req.session.propertyId= req.params.id;
     res.sendFile(path.resolve('./views/hostproperty.html'));
 })
 
 // send specific property data using cookie here
 app.get('/propertydata', async (req, res) => {
-    PropertyData.findOne({ propertyId: req.cookies.propertyId }, (err, docs) => {
+    PropertyData.findOne({ propertyId: req.session.propertyId }, (err, docs) => {
         if (docs) {
             res.json(docs)
 

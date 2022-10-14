@@ -6,6 +6,7 @@ const path = require('path')
 const { UserData, PropertyData, BookingData, ContactData } = require('../schema/schema.js');
 const cookieParser = require('cookie-parser');
 const multer = require('multer');
+const session = require('express-session');
 const bcrypt = require('bcrypt');
 
 // middlware
@@ -19,7 +20,7 @@ app.use(cookieParser());
 
 // send booking details
 app.get('/bookingdetails', async (req, res) => {
-    const bookingSendData = await req.cookies.detailOfBooking;
+    const bookingSendData = await req.session.detailOfBooking;
     res.json(bookingSendData);
 })
 

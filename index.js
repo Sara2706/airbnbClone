@@ -6,6 +6,7 @@ const path = require('path')
 const { UserData, PropertyData, BookingData, ContactData } = require('./schema/schema');
 const cookieParser = require('cookie-parser');
 const multer = require('multer');
+const session = require('express-session');
 const bcrypt = require('bcrypt');
 
 // middleware
@@ -18,6 +19,12 @@ app.use(express.static(`views/style/style.css`))
 
 app.use(cookieParser());
 app.use('/profile', express.static(path.join(__dirname, '/profile')));
+app.use(session({
+    secret: 'itissecret',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false}
+}))
 
 /*
 
@@ -80,13 +87,13 @@ app.use(require('./controller/rating&review.js'));
 
 // intro
 app.get('/intro', async (req, res) => {
-
+    console.log(req.session);
     res.sendFile('./views/intro.html', { root: __dirname })
 })
 
 // contact
 app.get('/contact', async (req, res) => {
-    if (await req.cookies.userId == undefined) {
+    if (await req.session.userId == undefined) {
         res.redirect('/login')
     }
     res.sendFile('./views/contact.html', { root: __dirname })

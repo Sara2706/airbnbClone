@@ -8,7 +8,7 @@ const getData = async () => {
         // convert to json
         const bookingData = await bookContent.json();
         const propertyData = await propertyContent.json();
-        console.log(propertyData[1]);
+        console.log(propertyData[0]);
         const wrap = document.querySelector('#wrap');
 
         // no booking means

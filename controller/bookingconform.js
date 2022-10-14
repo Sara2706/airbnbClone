@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const path = require('path')
 const { UserData, PropertyData, BookingData, ContactData } = require('../schema/schema.js');
 const cookieParser = require('cookie-parser');
+const session = require('express-session');
 const multer = require('multer');
 const bcrypt = require('bcrypt');
 
@@ -36,8 +37,8 @@ app.post('/conformation/success', async (req, res) => {
     const newBooking = new BookingData({
         bookingId: bookVal,
         bookingDate: date,
-        bookingGuestId: req.cookies.userId,
-        propertyId: req.cookies.propertyId,
+        bookingGuestId: req.session.userId,
+        propertyId: req.session.propertyId,
         propertyName: req.body.propertyName,
         guestName: req.body.GuestName,
         checkIn: req.body.Checkin,

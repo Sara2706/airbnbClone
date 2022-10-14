@@ -6,6 +6,7 @@ const path = require('path')
 const { UserData, PropertyData, BookingData, RatingData, ContactData } = require('../schema/schema.js');
 const cookieParser = require('cookie-parser');
 const multer = require('multer');
+const session = require('express-session');
 const bcrypt = require('bcrypt');
 
 // middleware
@@ -20,24 +21,18 @@ app.use(cookieParser());
 
 // send booking file
 app.get('/mybookings/:id', async (req, res) => {
-    if (req.cookies.bookingId) {
-        res.clearCookie('bookingId')
-    }
-    res.cookie('bookingId', req.params.id);
+    req.session.bookingId= req.params.id;
     res.sendFile(path.resolve('./views/bookingproperty.html'));
+    
 })
 
 // send booking data
 app.get('/mybookingsingledata', async (req, res) => {
-    const bookId = await BookingData.find({ bookingId: req.cookies.bookingId })
+    const bookId = await BookingData.find({ bookingId: req.session.bookingId })
 
     const bookPropId = bookId[0].propertyId;
 
-    if (req.cookies.bookingPropId) {
-        res.clearCookie('bookingPropId')
-    }
-    res.cookie('bookingPropId', bookPropId);
-
+    req.session.bookingPropId= bookPropId;
 
     res.json(bookId);
 
@@ -45,14 +40,13 @@ app.get('/mybookingsingledata', async (req, res) => {
 
 // send specific property data
 app.get('/mybookingsinglepropdata', async (req, res) => {
-    const inBookingProp = await PropertyData.find({ propertyId: req.cookies.bookingPropId });
-    console.log(inBookingProp);
+    const inBookingProp = await PropertyData.find({ propertyId: req.session.bookingPropId });
     res.json(inBookingProp);
 })
 
 // check user give alredy girve rating to this proprty or not
 app.get('/mybookingratebutton', async (req, res) => {
-    const inBookingProp = await RatingData.find({ bookingId: req.cookies.bookingId });
+    const inBookingProp = await RatingData.find({ bookingId: req.session.bookingId });
     if (inBookingProp.length > 0) {
         const ratingBtn = ['Need help?']
         res.json(ratingBtn);
@@ -64,7 +58,7 @@ app.get('/mybookingratebutton', async (req, res) => {
 
 // send rating here
 app.get('/propertyratingmybook', async (req, res) => {
-    const ratingData = await RatingData.find({ propertyId: req.cookies.bookingPropId });
+    const ratingData = await RatingData.find({ propertyId: req.session.bookingPropId });
     var ratings = 0;
 
     for (let i = 0; i < ratingData.length; i++) {
@@ -74,13 +68,13 @@ app.get('/propertyratingmybook', async (req, res) => {
     res.json(propRating);
 })
 
-// send reviews here
+// send current reviews here
 app.get('/propertyreviewingmybook', async (req, res) => {
-    const ratingData = await RatingData.find({ propertyId: req.cookies.bookingPropId });
+    const ratingData = await RatingData.find({ propertyId: req.session.bookingPropId });
     var ratings = [];
 
     for (let i = 0; i < ratingData.length; i++) {
-        if (ratingData[i].userId == req.cookies.userId) {
+        if (ratingData[i].userId == req.session.userId) {
             ratings.push(ratingData[i])
         }
     }

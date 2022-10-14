@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const path = require('path')
 const { UserData, PropertyData, BookingData, ContactData } = require('../schema/schema.js');
 const cookieParser = require('cookie-parser');
+const session = require('express-session');
 const multer = require('multer');
 const bcrypt = require('bcrypt');
 
@@ -14,6 +15,8 @@ app.use(bodyParser.json());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static(`views`))
+app.set('trust proxy', 1) // trust first proxy
+
 
 app.use(cookieParser());
 app.use('/profile', express.static(path.join(__dirname, '/profile')));
@@ -55,6 +58,12 @@ app.post('/register', profile.single("Profile"), async (req, res) => {
         userVal = userId.userId + 1;
     }
 
+    console.log(req.body.Password);
+
+    // bcrypt password here
+    const salt = await bcrypt.genSaltSync(10);
+    const hashedPassword = await bcrypt.hashSync(req.body.Password, salt);
+
     // connect with schema
     const newUser = new UserData({
         userId: userVal,
@@ -62,7 +71,7 @@ app.post('/register', profile.single("Profile"), async (req, res) => {
         userType: req.body.UserType,
         email: req.body.Email,
         name: `${req.body.Firstname} ${req.body.Secondname}`,
-        password: req.body.Password,
+        password: hashedPassword,
         mobile: req.body.Moblie,
         DOB: req.body.Dob,
         country: req.body.Country,
@@ -74,13 +83,13 @@ app.post('/register', profile.single("Profile"), async (req, res) => {
 
     // check these data alresy there or not
     if (await UserData.findOne({ userName: req.body.Username })) {
-        res.cookie('RegisterError', 'Username is already exists ');
+        req.session.RegisterError='Username is already exists';
         res.redirect('/register');
     } else if (await UserData.findOne({ mobile: req.body.mobile })) {
-        res.cookie('RegisterError', 'Mobile number is already exists ');
+        req.session.RegisterError='Mobile number is already exists';
         res.redirect('/register');
     } else if (await UserData.findOne({ email: req.body.email })) {
-        res.cookie('RegisterError', 'Email is already exists ');
+        req.session.RegisterError='Email is already exists';
         res.redirect('/register');
     } else {
         if (req.body.Password == req.body.ConformPassword) {
@@ -95,7 +104,7 @@ app.post('/register', profile.single("Profile"), async (req, res) => {
             // eirevt o login
             res.redirect('/login');
         } else {
-            res.cookie('RegisterError', 'password and conform password is not same');
+            req.session.RegisterError='password and conform password is not same';
             res.redirect('/register');
         }
     }
@@ -106,30 +115,40 @@ app.post('/register', profile.single("Profile"), async (req, res) => {
 // get login data and check is correct or not
 app.post('/login', async (req, res) => {
     console.log(req.body.loginpassword);
-    // bcrypt password here
-    const salt = await bcrypt.genSalt();
-    const hashedPassword = await bcrypt.hash(req.body.loginpassword, salt);
+
     // check email
     const logUserEmail = await UserData.findOne({ email: req.body.loginuserdata });
-    if (logUserEmail) {
+
+    console.log(logUserEmail);
+
+
+    // if email
+    if (logUserEmail == null) {
+        req.session.logInError = 'Invalid email address';
+        res.redirect('/login');
+
+    } else {
         // check password
-        if (await bcrypt.compare(logUserEmail.password, hashedPassword)) {
+        const passCompare = await bcrypt.compare(req.body.loginpassword, logUserEmail.password);
+        // check password true or false
+        if (passCompare == true) {
             // check user type
             if (logUserEmail.userType == 'Host') {
 
-                res.cookie('userId', logUserEmail.userId)
+                req.session.userId=logUserEmail.userId;
                 res.redirect('/host');
             } else {
-                res.cookie('userId', logUserEmail.userId)
+                req.session.userId = logUserEmail.userId;
+                req.session.save();
+                // console.log(
+                //     req.session
+                // );
                 res.redirect('/intro');
             }
         } else {
-            res.cookie('logInError', 'Invalid password')
+            req.session.logInError = 'Invalid password';
             res.redirect('/login');
         }
-    } else {
-        res.cookie('logInError', 'Invalid email address')
-        res.redirect('/login');
     }
 
 
@@ -137,37 +156,31 @@ app.post('/login', async (req, res) => {
 
 
 // if error in register means send to user register error 
-app.get('/registererror',async (req, res) => {
-    const error = await req.cookies.RegisterError;
+app.get('/registererror', async (req, res) => {
+    const error = await req.session.RegisterError;
     if (await error == undefined) {
         res.json('')
-    }else{
-        res.clearCookie('RegisterError')
+    } else {
+        req.session.destroy;
         res.json(error)
     }
 })
 
 // if error in login means send error to user
 app.get('/loginerror', async (req, res) => {
-    const error = await req.cookies.logInError;
+    const error = await req.session.logInError;
     if (await error == undefined) {
         res.json('')
-    }else{
-        res.clearCookie('logInError')
+    } else {
+        req.session.destroy;
         res.json(error)
     }
 })
 
-// logout clear all cookies
+// logout clear all session
 app.get('/logout', (req, res) => {
-    res.clearCookie('userId')
-    res.clearCookie('propertyId')
-    res.clearCookie('detailOfBooking')
-    res.clearCookie('bookingError');
-    res.clearCookie('bookingPropId');
-    res.clearCookie('bookingId');
-    res.clearCookie('logInError');
-    res.clearCookie('RegisterError');
+    req.session.destroy();
+    console.log(req.session);
     res.redirect('/');
 })
 
