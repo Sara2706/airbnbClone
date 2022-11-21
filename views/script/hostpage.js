@@ -2,7 +2,7 @@ const getData = async () => {
          
     try {
         // fetch data here
-        const hostFetch = await fetch('http://localhost:4000/hostproperty');
+        const hostFetch = await fetch('/hostproperty');
 
         // convert data to json
         const hostData = await hostFetch.json();

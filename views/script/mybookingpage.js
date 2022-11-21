@@ -2,8 +2,8 @@ const getData = async () => {
             
     try {
         // fetch data
-        const bookContent= await fetch('http://localhost:4000/fetchmyboookings');
-        const propertyContent= await fetch('http://localhost:4000/mybookingpropertydata');  
+        const bookContent= await fetch('/fetchmyboookings');
+        const propertyContent= await fetch('/mybookingpropertydata');  
 
         // convert to json
         const bookingData = await bookContent.json();

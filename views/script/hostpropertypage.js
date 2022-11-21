@@ -1,9 +1,9 @@
 const getpropertypage = async () => {
     try {
          //   fetch data here
-        const fetchData = await fetch(`http://localhost:4000/propertydata`)
-        const review = await fetch(`http://localhost:4000/propertyreview`)
-        const rating = await fetch(`http://localhost:4000/propertyrating`)
+        const fetchData = await fetch(`/propertydata`)
+        const review = await fetch(`/propertyreview`)
+        const rating = await fetch(`/propertyrating`)
          // convert data to json
         const getData = await fetchData.json();
         const reviewdata = await review.json();

@@ -91,6 +91,8 @@ app.get('/intro', async (req, res) => {
     res.sendFile('./views/intro.html', { root: __dirname })
 })
 
+
+
 // contact
 app.get('/contact', async (req, res) => {
     if (await req.session.userId == undefined) {

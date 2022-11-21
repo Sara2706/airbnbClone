@@ -35,7 +35,7 @@ const ratingsAndReview = async () => {
                         review: review.value
                     } 
                     // send data to his api
-                    fetch('http://localhost:4000/reviewdata', {
+                    fetch('/reviewdata', {
                         method: "POST",
                         headers: {
                             'Content-Type': "application/json"

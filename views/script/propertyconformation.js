@@ -1,7 +1,7 @@
 const bookDetail = async () => {
     try {
         // fetch data here
-        const fetchBookingData = await fetch(`http://localhost:4000/bookingdetails`);
+        const fetchBookingData = await fetch(`/bookingdetails`);
 
         // convert to json
         const bookingData = await fetchBookingData.json();

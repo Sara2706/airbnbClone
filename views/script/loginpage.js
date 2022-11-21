@@ -1,5 +1,5 @@
 const validation = async () => {
-    const error = await fetch('http://localhost:4000/loginerror');
+    const error = await fetch('/loginerror');
     const errorData = await error.json();
     if (errorData.length > 0 ) {
         const userAlert = document.querySelector('.alertUser');
