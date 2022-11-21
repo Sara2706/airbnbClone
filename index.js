@@ -26,6 +26,8 @@ app.use(session({
     cookie: { secure: false}
 }))
 
+const port = process.env.PORT || 4000;
+
 /*
 
 Guest:
@@ -135,6 +137,6 @@ app.post('/contactquerydata', async (req, res) => {
     res.redirect('/')
 })
 
-app.listen('4000', () => {
+app.listen(port, () => {
     console.log('Server started')
 })
