@@ -11,7 +11,7 @@ const log = async () => {
         })
 
         // fetchdata here
-        const logdatafetch = await fetch('http://localhost:4000/log');
+        const logdatafetch = await fetch('/log');
         // convert data into json
         const logdata = await logdatafetch.json();
 

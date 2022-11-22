@@ -113,7 +113,7 @@ const getpropertypage = async () => {
 
         // if no of people above then property guest allowed means create alert here
         const showalert = document.querySelector('.showalert');
-        const error = await fetch(`http://localhost:4000/bookingerror`);
+        const error = await fetch(`/bookingerror`);
         const errorDatas = await error.json();
         if (errorDatas.length > 0) {
             const bookingAlert = document.querySelector('.alertUser');
