@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const moongoURI = 'mongodb://127.0.0.1:27017/airbnbclone';
+const moongoURI = "mongodb+srv://saravanan:msdhoni2706@cluster0.wzp5ada.mongodb.net/?retryWrites=true&w=majority";
 
 mongoose.connect(moongoURI)
 .then(res=>{console.log('Database connected');})
